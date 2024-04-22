@@ -1,4 +1,8 @@
-from answer_gen import *
+# from answer_gen import *
+
+import random
+
+from tkinter import *
 
 with open("Colours.txt", "r") as file:
     colours = file.read()
@@ -32,6 +36,23 @@ numbersinput.config(bg=darkgrey, fg=white)
 numbersinput["menu"].config(fg=white, bg=darkgrey)
 numbersinput.grid(row=2, column=0)
 
+# answer
+finalanswer = "0"
+finalanswer_var = StringVar()
+finalanswer_var.set(finalanswer)
+
+
+def answer():
+    global finalanswer
+    hold = finalanswer
+    while hold == finalanswer:
+        finalanswer = random.randint(1, 10)
+
+    finalanswer_str = str(finalanswer)
+    finalanswer_var.set(finalanswer_str)
+    print(finalanswer)
+
+
 # Guess button
 guessbutton = Button(root, text="GUESS", padx=10, pady=10, command=answer, fg=white, bg=green)
 guessbutton.grid(row=2, column=1)
@@ -40,9 +61,7 @@ guessbutton.grid(row=2, column=1)
 answerlabel = Label(root, text="Answer", fg=blue, bg=darkgrey)
 answerlabel.grid(row=1, column=2)
 
-finalanswer_var = StringVar()
-finalanswer_var.set(finalanswer)
-finalanswerlabel = Label(root, text=finalanswer_var, fg=blue, bg=darkgrey)
+finalanswerlabel = Label(root, textvariable=finalanswer_var, fg=blue, bg=darkgrey)
 finalanswerlabel.grid(row=2, column=2)
 
 root.mainloop()
