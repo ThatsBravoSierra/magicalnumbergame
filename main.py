@@ -8,8 +8,6 @@ with open("Colours.txt", "r") as file:
     colours = file.read()
     exec(colours)
 
-playable = 1
-
 # Window Parameters
 root = Tk()
 root.title("Robert's Fantastic Magical Number Game")
@@ -22,7 +20,7 @@ versiontext = Label(root, text=version, fg=white, bg=darkgrey)
 versiontext.place(x=0, y=0)
 
 # Top label
-textlabel = Label(root, text="Welcome! This game is tough! Think you can win?", fg=red, bg=darkgrey)
+textlabel = Label(root, text="------------World's Best Roguelike------------", fg=red, bg=darkgrey)
 textlabel.grid(row=0, column=1)
 
 # Guess box
@@ -48,12 +46,17 @@ result = ""
 result_var = StringVar()
 result_var.set(result)
 
+points_int = 0
+points_var = StringVar()
+points_var.set(points_int)
+
 
 def answer():
     global finalanswer
     global guess
     global result_var
-    global playable
+    global points_int
+    global points_var
     hold = finalanswer
     while hold == finalanswer:
         finalanswer = random.randint(1, 10)
@@ -62,15 +65,16 @@ def answer():
     finalanswer_var.set(finalanswer_str)
     if guess == finalanswer_str:
         result_var.set("correct")
+        points_int = + 1
+        points_var.set(str(points_int))
     else:
         result_var.set("incorrect")
-        playable = 0
+        guessbutton.grid_forget()
 
 
 # Guess button
-if playable == 1:
-    guessbutton = Button(root, text="GUESS", padx=10, pady=10, command=answer, fg=white, bg=green)
-    guessbutton.grid(row=2, column=1)
+guessbutton = Button(root, text="GUESS", padx=10, pady=10, command=answer, fg=white, bg=green)
+guessbutton.grid(row=2, column=1)
 
 # Answer Display
 answerlabel = Label(root, text="Answer", fg=blue, bg=darkgrey)
@@ -85,5 +89,12 @@ resultlabel.grid(row=3, column=1)
 
 resulttext = Label(root, textvariable=result_var, fg=blue, bg=darkgrey)
 resulttext.grid(row=4, column=1)
+
+# points
+pointslabel = Label(root, text="Points", fg=blue, bg=darkgrey)
+pointslabel.grid(row=5, column=1)
+
+pointstext = Label(root, textvariable=points_var, fg=blue, bg=darkgrey)
+pointstext.grid(row=6, column=1)
 
 root.mainloop()
