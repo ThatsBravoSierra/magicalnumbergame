@@ -1,5 +1,3 @@
-from tkinter import *
-
 from answer_gen import *
 
 with open("Colours.txt", "r") as file:
