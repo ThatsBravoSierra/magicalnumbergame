@@ -48,7 +48,23 @@ result_var.set(result)
 
 points_int = 0
 points_var = StringVar()
-points_var.set(points_int)
+points_var.set(str(points_int))
+
+
+def reset_game():
+    global finalanswer
+    global guess
+    global result_var
+    global points_int
+    global points_var
+
+    finalanswer = "0"
+    guess = "0"
+    result_var.set("")
+    points_int = 0
+    points_var.set("0")
+    guessbutton.grid(row=2, column=1)
+    retrybutton.grid_forget()
 
 
 def answer():
@@ -57,6 +73,7 @@ def answer():
     global result_var
     global points_int
     global points_var
+    guess = numbersdrop.get()
     hold = finalanswer
     while hold == finalanswer:
         finalanswer = random.randint(1, 10)
@@ -70,7 +87,10 @@ def answer():
     else:
         result_var.set("incorrect")
         guessbutton.grid_forget()
+        retrybutton.grid(row=2, column=1)
 
+
+retrybutton = Button(root, text="Retry", padx=10, pady=10, command=reset_game, fg=red, bg=grey)
 
 # Guess button
 guessbutton = Button(root, text="GUESS", padx=10, pady=10, command=answer, fg=white, bg=green)
