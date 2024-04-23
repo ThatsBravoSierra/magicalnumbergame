@@ -4,9 +4,14 @@ import random
 
 from tkinter import *
 
-with open("Colours.txt", "r") as file:
-    colours = file.read()
-    exec(colours)
+# Colour Pallet
+
+blue = "#7289DA"
+grey = "#2C2F33"
+darkgrey = "#23272A"
+white = "#FFFFFF"
+green = "#2E8B57"
+red = "#DC143C"
 
 # Window Parameters
 root = Tk()

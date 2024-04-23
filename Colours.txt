@@ -1,8 +1,0 @@
-# Colour Pallet
-
-blue = "#7289DA"
-grey = "#2C2F33"
-darkgrey = "#23272A"
-white = "#FFFFFF"
-green = "#2E8B57"
-red = "#DC143C"
