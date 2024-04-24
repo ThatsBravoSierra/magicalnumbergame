@@ -87,7 +87,7 @@ def answer():
     finalanswer_var.set(finalanswer_str)
     if guess == finalanswer_str:
         result_var.set("correct")
-        points_int = + 1
+        points_int += 1
         points_var.set(str(points_int))
     else:
         result_var.set("incorrect")
