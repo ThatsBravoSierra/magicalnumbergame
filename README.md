@@ -1,3 +1,3 @@
-# The Wold's Best Roguelike
+# The World's Best Roguelike
 
 The best game ever made
