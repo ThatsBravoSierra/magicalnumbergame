@@ -85,10 +85,9 @@ def answer():
     global hs_var
 
     guess = numbersdrop.get()
-    finalanswer = 1
-    #hold = finalanswer
-    #while hold == finalanswer:
-    #    finalanswer = random.randint(1, 10)
+    hold = finalanswer
+    while hold == finalanswer:
+        finalanswer = random.randint(1, 10)
 
     finalanswer_str = str(finalanswer)
     finalanswer_var.set(finalanswer_str)
