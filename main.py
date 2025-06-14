@@ -20,7 +20,7 @@ root.configure(bg=darkgrey)
 root.resizable(True, True)
 
 # Version
-version = "Version 1"
+version = "Version 1.2"
 versiontext = Label(root, text=version, fg=white, bg=darkgrey)
 versiontext.place(x=0, y=0)
 
@@ -55,6 +55,9 @@ points_int = 0
 points_var = StringVar()
 points_var.set(str(points_int))
 
+hs_int = 0
+hs_var = StringVar()
+hs_var.set(str(hs_int))
 
 def reset_game():
     global finalanswer
@@ -78,10 +81,14 @@ def answer():
     global result_var
     global points_int
     global points_var
+    global hs_int
+    global hs_var
+
     guess = numbersdrop.get()
-    hold = finalanswer
-    while hold == finalanswer:
-        finalanswer = random.randint(1, 10)
+    finalanswer = 1
+    #hold = finalanswer
+    #while hold == finalanswer:
+    #    finalanswer = random.randint(1, 10)
 
     finalanswer_str = str(finalanswer)
     finalanswer_var.set(finalanswer_str)
@@ -89,6 +96,10 @@ def answer():
         result_var.set("correct")
         points_int += 1
         points_var.set(str(points_int))
+        if points_int > hs_int:
+            hs_int += 1
+            hs_var.set(str(hs_int))
+
     else:
         result_var.set("incorrect")
         guessbutton.grid_forget()
@@ -121,5 +132,12 @@ pointslabel.grid(row=5, column=1)
 
 pointstext = Label(root, textvariable=points_var, fg=blue, bg=darkgrey)
 pointstext.grid(row=6, column=1)
+
+# highscore
+hslabel = Label(root, text="Highscore", fg=red, bg =darkgrey)
+hslabel.grid(row=7, column=1)
+
+hstext = Label(root, textvariable=hs_var, fg=red, bg=darkgrey)
+hstext.grid(row=8, column=1)
 
 root.mainloop()
